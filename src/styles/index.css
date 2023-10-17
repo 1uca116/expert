@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '@fontsource/montserrat';
+@import './variables.css';
+/*@import 'react-popper-tooltip/dist/styles.css';*/
+/*@import 'react-datepicker/dist/react-datepicker.css';*/
+/*@import './animations.css';*/
+/*@import './notifications.css';*/
+/*@import './datepicker.css';*/
+/*@import './tooltip.css';*/
+
+@layer base {
+    body {
+        font-family: 'Montserrat', sans-serif;
+        @apply w-screen overflow-x-hidden;
+        @apply bg-stone text-black;
+    }
+
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+
+body.no-scroll {
+    @apply max-h-screen;
+    @apply overflow-hidden;
+}

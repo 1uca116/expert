@@ -1,0 +1,3 @@
+.main {
+  @apply max-w-screen-1400 w-full mx-auto;
+}

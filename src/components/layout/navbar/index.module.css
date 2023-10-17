@@ -1,0 +1,39 @@
+.navbar {
+    @apply bg-black shadow-sm;
+    @apply sticky top-0 w-full z-40;
+}
+
+.container {
+    @apply flex items-center justify-between py-5 px-4;
+}
+
+.brand_container {
+    @apply flex items-center justify-between space-x-10;
+}
+
+.logo_url {
+    @apply shrink-0;
+}
+
+.logo_container {
+    @apply flex items-center;
+}
+
+.logo {
+    @apply w-10 h-auto hidden max-md:inline;
+}
+
+.logo_text {
+    @apply w-44 h-auto;
+    @apply inline max-md:hidden;
+}
+
+.page_link {
+    @apply hidden sm:flex justify-between items-center gap-1;
+    @apply font-semibold text-sm text-slate-200 whitespace-nowrap;
+}
+
+.search_container {
+    @apply w-full max-w-md px-4;
+    @apply hidden lg:block;
+}

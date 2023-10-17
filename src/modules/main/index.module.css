@@ -1,0 +1,4 @@
+.main {
+  @apply px-4 my-16;
+  @apply h-screen;
+}
