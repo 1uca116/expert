@@ -1,0 +1,17 @@
+.menu {
+  @apply z-50 opacity-95;
+  @apply p-1 min-w-[140px];
+  @apply rounded-md;
+  @apply cursor-pointer;
+}
+.menu_item {
+  @apply flex items-center gap-2;
+  @apply px-4 py-2;
+  @apply text-black;
+  @apply z-50;
+  @apply cursor-pointer outline-none;
+}
+.menu_item:hover {
+  @apply bg-stone;
+  @apply rounded-md;
+}
