@@ -3,12 +3,12 @@ import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import Container from '@/components/core/container';
+import Container from 'components/core/container';
 import Link from 'next/link';
-import ROUTES from '@/routes';
-import Dropdown from '@/components/core/dropdown';
+import ROUTES from 'routes';
+import Dropdown from 'components/core/dropdown';
 import { FaChevronDown } from 'react-icons/fa';
-import Button from '@/components/core/button';
+import Button from 'components/core/button';
 
 const Navbar = observer(() => {
   const intl = useIntl();
