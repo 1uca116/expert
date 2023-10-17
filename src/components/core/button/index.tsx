@@ -20,7 +20,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...buttonProps}
         className={classNames(
           styles.button,
-          { [styles.primary_1]: variant === 'primary' },
+          { [styles.primary]: variant === 'primary' },
           { [styles.secondary]: variant === 'secondary' },
           { [styles.tertiary]: variant === 'tertiary' },
           { [styles.inverse]: inverse === true },

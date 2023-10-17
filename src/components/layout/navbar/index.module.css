@@ -28,8 +28,8 @@
   @apply ms-3;
 }
 .navbar_actions {
-  @apply flex;
+  @apply flex gap-5;
 }
 .button_dropdown {
-  @apply flex items-center;
+  @apply flex items-center gap-1;
 }

@@ -1,6 +1,5 @@
 import styles from './index.module.css';
-import { Menu, MenuItem } from '@szhsin/react-menu';
-import classNames from 'classnames';
+import { Menu, MenuAlign, MenuItem } from '@szhsin/react-menu';
 
 type DropdownAction = {
   text: string;
@@ -11,7 +10,7 @@ type DropdownAction = {
 
 type DropdownProps = {
   menuButton: JSX.Element;
-  className?: string;
+  menuAlign: MenuAlign;
   actions: DropdownAction[];
 };
 
@@ -19,18 +18,14 @@ const Dropdown = (props: DropdownProps) => {
   return (
     <Menu
       menuButton={props.menuButton}
-      menuClassName={classNames(styles.menu, props.className)}
+      menuClassName={styles.menu}
       portal={true}
-      align={'end'}
+      align={props.menuAlign}
     >
       {props.actions.map((x) => (
-        <MenuItem
-          key={x.text}
-          onClick={x.onClick}
-          className={styles.menu_item}
-        >
+        <MenuItem key={x.text} onClick={x.onClick} className={styles.menu_item}>
           {x.icon ?? null}
-          <span className='text-lg'>{x.text}</span>
+          <span className={x.className}>{x.text}</span>
         </MenuItem>
       ))}
     </Menu>

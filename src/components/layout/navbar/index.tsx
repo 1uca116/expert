@@ -32,7 +32,7 @@ const Navbar = observer(() => {
         <div className={styles.navbar_actions}>
           <Dropdown
             menuButton={
-              <Button variant={'primary'} className={styles.button_dropdown}>
+              <Button variant={'tertiary'} className={styles.button_dropdown}>
                 <span>
                   {intl.formatMessage({
                     id: 'expert.navbar.for-experts',
@@ -42,25 +42,52 @@ const Navbar = observer(() => {
                 <FaChevronDown className='text-sm' />
               </Button>
             }
-            className={'bg-white shadow'}
+            menuAlign={'end'}
             actions={[
               {
-                text: 'Edit',
+                text: intl.formatMessage({
+                  id: 'expert.navbar.for-experts.signup',
+                  defaultMessage: 'Create an account',
+                }),
                 onClick: () => console.log('test'),
               },
               {
-                text: 'Remove',
+                text: intl.formatMessage({
+                  id: 'expert.navbar.for-experts.login',
+                  defaultMessage: 'Login',
+                }),
                 onClick: () => console.log('test'),
               },
             ]}
           />
 
-          <span>
+          <Button variant={'tertiary'}>
             {intl.formatMessage({
-              id: 'expert.navbar.sign-in',
-              defaultMessage: 'Sign in',
+              id: 'expert.navbar.for-users.login',
+              defaultMessage: 'Login',
             })}
-          </span>
+          </Button>
+
+          <Dropdown
+            menuButton={
+              <Button variant={'tertiary'} className={'!text-xl'}>
+                🇷🇸
+              </Button>
+            }
+            menuAlign={'center'}
+            actions={[
+              {
+                text: '🇷🇺',
+                onClick: () => console.log('test'),
+                className: 'text-xl',
+              },
+              {
+                text: '🇬🇧',
+                onClick: () => console.log('test'),
+                className: 'text-xl',
+              },
+            ]}
+          />
         </div>
       </Container>
     </div>
