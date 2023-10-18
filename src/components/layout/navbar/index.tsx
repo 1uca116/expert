@@ -9,10 +9,14 @@ import ROUTES from 'routes';
 import Dropdown from 'components/core/dropdown';
 import { FaChevronDown } from 'react-icons/fa';
 import Button from 'components/core/button';
+import { useMainMenu } from 'hooks/show-sidebar';
+import { MdOutlineMenu } from 'react-icons/md';
 
 const Navbar = observer(() => {
   const intl = useIntl();
   const router = useRouter();
+
+  const { showMainMenu } = useMainMenu();
 
   return (
     <div className={classNames(styles.navbar)}>
@@ -29,6 +33,13 @@ const Navbar = observer(() => {
             </div>
           </Link>
         </div>
+        <Button
+          variant='tertiary'
+          className={styles.mobile_menu_btn}
+          onClick={showMainMenu}
+        >
+          <MdOutlineMenu />
+        </Button>
         <div className={styles.navbar_actions}>
           <Dropdown
             menuButton={

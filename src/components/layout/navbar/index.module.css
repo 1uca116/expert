@@ -17,6 +17,7 @@
 
 .logo_container {
   @apply flex items-center;
+  @apply outline-none;
 }
 
 .logo {
@@ -28,8 +29,13 @@
   @apply ms-3;
 }
 .navbar_actions {
-  @apply flex gap-5;
+  @apply hidden sm:flex gap-5;
 }
 .button_dropdown {
   @apply flex items-center gap-1;
+}
+
+.mobile_menu_btn {
+  @apply flex sm:!hidden;
+  @apply !text-4xl
 }
