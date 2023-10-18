@@ -1,4 +1,28 @@
 .title {
-    @apply text-5xl lg:text-7xl;
-    @apply max-w-3xl;
+  @apply text-5xl lg:text-7xl;
+  @apply max-w-3xl;
+  @apply select-none;
+}
+.title_accent {
+  @apply text-red;
+}
+.search_section {
+  @apply grid grid-cols-12 gap-3;
+  @apply mt-10;
+}
+.search_field {
+  @apply col-span-10;
+}
+.search_btn {
+  @apply col-span-2;
+}
+
+.suggestion_section {
+  @apply flex gap-3;
+  @apply mt-4;
+}
+.suggestion {
+  @apply bg-orange text-black;
+  @apply px-3 py-1.5;
+  @apply rounded-md;
 }

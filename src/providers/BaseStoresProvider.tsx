@@ -3,10 +3,15 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { IntlProvider } from 'react-intl';
 import { LanguageStore } from '../stores/LanguageStore';
 import { LayoutStore } from '../stores/LayoutStore';
+import { getApi } from '../utils/api';
+import { Api } from '../api';
+
+const api = getApi();
 
 type BaseStores = {
   language: LanguageStore;
   layout: LayoutStore;
+  api: Api<unknown>;
 };
 
 const baseStoreContext = createContext<BaseStores>({} as BaseStores);
@@ -20,6 +25,7 @@ export const ProvideBaseStores = observer(({ children }: any) => {
     () => ({
       language: languageStore,
       layout: layoutStore,
+      api: api,
     }),
     [languageStore, layoutStore]
   );
@@ -61,4 +67,10 @@ export const useLayout = () => {
   const { layout } = useContext(baseStoreContext);
 
   return layout;
+};
+
+export const useApi = () => {
+  const { api } = useContext(baseStoreContext);
+
+  return api;
 };
