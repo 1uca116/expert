@@ -1,0 +1,9 @@
+.main {
+  @apply flex flex-1 justify-center items-center;
+  @apply my-auto;
+}
+.container {
+  @apply bg-orange shadow-md;
+  @apply p-5;
+  @apply rounded-md;
+}

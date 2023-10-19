@@ -11,24 +11,11 @@ module.exports = {
       lavender: generateColorClass('color-lavender'),
       orange: generateColorClass('color-orange'),
 
-      slate: {
-        100: generateColorClass('color-slate-100'),
-        200: generateColorClass('color-slate-200'),
-        300: generateColorClass('color-slate-300'),
-      },
-      gray: {
-        100: generateColorClass('color-gray-100'),
-        200: generateColorClass('color-gray-200'),
-        300: generateColorClass('color-gray-300'),
-        400: generateColorClass('color-gray-400'),
-        500: generateColorClass('color-gray-500'),
-        600: generateColorClass('color-gray-600'),
-      },
       neutral: {
-        50: 'var(--color-neutral-050)',
-        100: 'var(--color-neutral-100)',
-        200: 'var(--color-neutral-200)',
-        'solid-50': generateColorClass('color-neutral-solid-050'),
+        200: generateColorClass('color-neutral-200'),
+        300: generateColorClass('color-neutral-300'),
+        400: generateColorClass('color-neutral-400'),
+        500: generateColorClass('color-neutral-500')
       },
       transparent: 'transparent',
     },

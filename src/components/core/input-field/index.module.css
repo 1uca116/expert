@@ -1,0 +1,18 @@
+.container {
+  @apply bg-white text-neutral-400 rounded-md overflow-hidden;
+  @apply flex items-center gap-2 px-4 py-2;
+  @apply border border-transparent;
+}
+
+.input {
+  @apply w-full text-black bg-white outline-none;
+}
+
+.input::placeholder {
+  @apply opacity-100;
+}
+
+.error {
+  @apply px-1;
+  @apply text-red text-sm;
+}

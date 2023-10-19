@@ -11,23 +11,10 @@
     --color-lavender: 174, 181, 245;
     --color-orange: 254, 179, 139;
 
-    --color-slate-100: 238, 238, 240;
-    --color-slate-200: 142, 142, 152;
-    --color-slate-300: 29, 31, 33;
-
-    --color-gray-100: 245, 245, 246;
-    --color-gray-200: 247, 247, 248;
-    --color-gray-300: 221, 221, 221;
-    --color-gray-400: 194, 194, 194;
-    --color-gray-500: 139, 139, 139;
-    --color-gray-600: 36, 38, 38;
-
-
-    --color-neutral-050: rgba(255, 255, 255, 0.04);
-    --color-neutral-100: rgba(255, 255, 255, 0.08);
-    --color-neutral-200: rgba(255, 255, 255, 0.12);
-
-    --color-neutral-solid-050: 26, 28, 29;
+    --color-neutral-200: 231, 229, 228;
+    --color-neutral-300: 214, 211, 209;
+    --color-neutral-400: 168, 162, 158;
+    --color-neutral-500: 120, 113, 108;
 
     --sidebar-account-box-shadow: 0px 6px 16px -2px rgba(0, 0, 0, 0.1);
     --sidebar-box-shadow: -12px 4px 20px 0px rgba(0, 0, 0, 0.04);

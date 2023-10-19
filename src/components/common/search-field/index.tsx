@@ -69,7 +69,7 @@ const searchFieldStyles: StylesConfig<
   }),
   placeholder: (provided) => ({
     ...provided,
-    color: 'rgb(var(--color-slate-200))',
+    color: 'rgb(var(--color-neutral-400))',
     fontSize: '16px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -93,7 +93,7 @@ const searchFieldStyles: StylesConfig<
       width: '4px',
     },
     '::-webkit-scrollbar-thumb': {
-      background: 'rgb(var(--color-gray-400))',
+      background: 'rgb(var(--color-neutral-300))',
       width: '2px',
       borderRadius: '2px',
       backgroundClip: 'padding-box',

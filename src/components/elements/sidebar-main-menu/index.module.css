@@ -9,16 +9,16 @@
 .expert_section {
   @apply flex flex-col gap-3;
   @apply mt-10;
-  @apply border-t border-gray-300;
+  @apply border-t border-neutral-300;
 }
 
 .section_title {
-  @apply text-gray-500 text-center;
+  @apply text-neutral-400 text-center;
   @apply mt-4 mb-3;
 }
 
 .language_section {
   @apply flex flex-col gap-3;
   @apply mt-10;
-  @apply border-t border-gray-300;
+  @apply border-t border-neutral-300;
 }

@@ -41,6 +41,6 @@
 
 .tertiary.inverse {
   @apply bg-transparent;
-  @apply border border-gray-100;
-  @apply text-gray-100;
+  @apply border border-neutral-200;
+  @apply text-neutral-200;
 }
