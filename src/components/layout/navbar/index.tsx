@@ -1,7 +1,6 @@
 import styles from './index.module.css';
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
-import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import Container from 'components/core/container';
 import Link from 'next/link';
