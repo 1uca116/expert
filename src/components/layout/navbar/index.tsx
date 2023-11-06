@@ -14,7 +14,6 @@ import { MdOutlineMenu } from 'react-icons/md';
 
 const Navbar = observer(() => {
   const intl = useIntl();
-  const router = useRouter();
 
   const { showMainMenu } = useMainMenu();
 
@@ -71,14 +70,14 @@ const Navbar = observer(() => {
               },
             ]}
           />
-
-          <Button variant={'tertiary'}>
-            {intl.formatMessage({
-              id: 'expert.navbar.for-users.login',
-              defaultMessage: 'Login',
-            })}
-          </Button>
-
+          <Link href={`/${ROUTES.account.path}/${ROUTES.account.login.path}`}>
+            <Button variant={'tertiary'}>
+              {intl.formatMessage({
+                id: 'expert.navbar.for-users.login',
+                defaultMessage: 'Login',
+              })}
+            </Button>
+          </Link>
           <Dropdown
             menuButton={
               <Button variant={'tertiary'} className={'!text-xl'}>

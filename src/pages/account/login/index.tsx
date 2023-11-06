@@ -1,7 +1,7 @@
-import Account from 'modules/account';
+import AccountLogin from 'modules/account/login';
 
-const AccountPage = () => {
-  return <Account />;
+const AccountLoginPage = () => {
+  return <AccountLogin />;
 };
 
-export default AccountPage;
+export default AccountLoginPage;

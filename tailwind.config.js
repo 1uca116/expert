@@ -10,6 +10,7 @@ module.exports = {
       pink: generateColorClass('color-pink'),
       lavender: generateColorClass('color-lavender'),
       orange: generateColorClass('color-orange'),
+      green: generateColorClass('color-green'),
 
       neutral: {
         200: generateColorClass('color-neutral-200'),

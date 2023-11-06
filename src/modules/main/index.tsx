@@ -3,7 +3,7 @@ import Container from 'components/core/container';
 import classNames from 'classnames';
 import SearchSection from './search-section';
 
-const MainPage = () => {
+const Main = () => {
   return (
     <Container className={classNames(styles.main)}>
       <SearchSection />
@@ -11,4 +11,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default Main;

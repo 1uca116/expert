@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { useCallback, useEffect, useState } from 'react';
 
 type Props = {
+  label?: string;
   value?: string | number;
   placeholder?: string;
   disabled?: boolean;
@@ -13,9 +14,11 @@ type Props = {
   className?: string;
   error?: string;
   icon?: JSX.Element;
+  inputColor?: string;
 };
 const InputField = ({
   value,
+  label,
   placeholder,
   disabled,
   onChange,
@@ -25,6 +28,7 @@ const InputField = ({
   className,
   error,
   icon,
+  inputColor,
 }: Props) => {
   const [inputValue, setStrValue] = useState(value);
 
@@ -45,11 +49,13 @@ const InputField = ({
 
   return (
     <div className={classNames('w-full', className)}>
-      <div className={styles.container}>
+      {label && <label className={styles.label}>{label}</label>}
+
+      <div className={classNames(styles.container, inputColor)}>
         {icon ?? null}
 
         <input
-          className={styles.input}
+          className={classNames(styles.input, inputColor)}
           value={value}
           placeholder={placeholder}
           type={type ?? 'text'}

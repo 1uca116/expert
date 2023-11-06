@@ -1,0 +1,12 @@
+.action_container {
+  @apply sticky top-24 right-0;
+  @apply bg-white rounded-md;
+  @apply p-1;
+}
+.action_item {
+  @apply flex items-center gap-2;
+  @apply p-4;
+}
+.action_item.active {
+  @apply bg-stone;
+}

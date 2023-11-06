@@ -3,7 +3,25 @@
   @apply my-auto;
 }
 .container {
+  @apply max-w-md w-full;
   @apply bg-orange shadow-md;
   @apply p-5;
   @apply rounded-md;
+}
+.title {
+  @apply text-center text-xl font-semibold;
+}
+.form {
+  @apply py-5;
+}
+.form_field {
+  @apply pb-2;
+}
+.link_section{
+  @apply mt-3;
+  @apply text-center text-xs;
+}
+.link {
+  @apply ps-1;
+  @apply text-xs text-red underline;
 }

@@ -3,6 +3,7 @@ const ROUTES = {
   account: {
     path: 'account',
     login: {path: 'login'},
+    registration: {path: 'registration'},
     settings: { path: 'settings' },
     orders: { path: 'orders' },
   },

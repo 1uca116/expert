@@ -1,29 +1,33 @@
 import styles from './index.module.css';
 import { useIntl } from 'react-intl';
-import Button from 'components/core/button';
-import InputField from 'components/core/input-field';
+import Button from '../../../components/core/button';
+import InputField from '../../../components/core/input-field';
 import { Controller, useForm } from 'react-hook-form';
 import joi from 'joi';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { observer } from 'mobx-react-lite';
 import { useCallback, useMemo } from 'react';
-import ROUTES from 'routes';
-import Link from 'next/link';
 
-export type OnLoginSubmit = {
+export type OnRegistrationSubmit = {
   email: string;
-  password: string;
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  phone: number;
 };
 
-type LoginForm = {
+type RegistrationForm = {
   email: string;
-  password: string;
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  phone: number;
 };
 
 type Props = {
-  onSubmit?: (form: OnLoginSubmit) => void;
+  onSubmit?: (form: OnRegistrationSubmit) => void;
 };
-const AccountLogin = observer(({ onSubmit }: Props) => {
+const AccountRegistration = observer(({ onSubmit }: Props) => {
   const intl = useIntl();
 
   const formScheme = useMemo(
@@ -36,21 +40,28 @@ const AccountLogin = observer(({ onSubmit }: Props) => {
             tlds: { allow: ['com', 'net', 'ru'] },
           })
           .required(),
-        password: joi.string().min(5).alphanum().required(),
+        firstName: joi.string().required(),
+        lastName: joi.string().required(),
+        phone: joi.number().required(),
       }),
     []
   );
 
-  const { handleSubmit, control, formState, watch } = useForm<LoginForm>({
-    resolver: joiResolver(formScheme),
-    mode: 'onChange',
-    defaultValues: {},
-  });
+  const { handleSubmit, control, formState, watch } = useForm<RegistrationForm>(
+    {
+      resolver: joiResolver(formScheme),
+      mode: 'onChange',
+      defaultValues: {},
+    }
+  );
   const onSubmitForm = useCallback(
-    (form: LoginForm) => {
+    (form: RegistrationForm) => {
       onSubmit?.({
         email: form.email,
-        password: form.password,
+        firstName: form.firstName,
+        lastName: form.lastName,
+        phone: form.phone,
+        dateOfBirth: form.dateOfBirth,
       });
     },
     [onSubmit]
@@ -61,8 +72,8 @@ const AccountLogin = observer(({ onSubmit }: Props) => {
       <div className={styles.container}>
         <div className={styles.title}>
           {intl.formatMessage({
-            id: 'account.login.title',
-            defaultMessage: 'Login to account',
+            id: 'account.registration.title',
+            defaultMessage: 'Create an account',
           })}
         </div>
         <div className={styles.form}>
@@ -76,11 +87,11 @@ const AccountLogin = observer(({ onSubmit }: Props) => {
               }) => (
                 <InputField
                   placeholder={intl.formatMessage({
-                    id: 'account.login.form.placeholder.email',
+                    id: 'account.registration.form.placeholder.email',
                     defaultMessage: 'Enter email',
                   })}
                   label={intl.formatMessage({
-                    id: 'account.login.form.label.email',
+                    id: 'account.registration.form.label.email',
                     defaultMessage: 'Email',
                   })}
                   value={value ?? ''}
@@ -94,19 +105,19 @@ const AccountLogin = observer(({ onSubmit }: Props) => {
           <div className={styles.form_field}>
             <Controller
               control={control}
-              name='password'
+              name='firstName'
               render={({
                 field: { onChange, onBlur, value },
                 fieldState: { error },
               }) => (
                 <InputField
                   placeholder={intl.formatMessage({
-                    id: 'account.login.form.placeholder.password',
-                    defaultMessage: 'Enter password',
+                    id: 'account.registration.form.placeholder.first-name',
+                    defaultMessage: 'First name',
                   })}
                   label={intl.formatMessage({
-                    id: 'account.login.form.label.password',
-                    defaultMessage: 'Password',
+                    id: 'account.registration.form.label.first-name',
+                    defaultMessage: 'First name',
                   })}
                   value={value ?? ''}
                   onChange={onChange}
@@ -116,6 +127,32 @@ const AccountLogin = observer(({ onSubmit }: Props) => {
               )}
             ></Controller>
           </div>
+          <div className={styles.form_field}>
+            <Controller
+              control={control}
+              name='lastName'
+              render={({
+                field: { onChange, onBlur, value },
+                fieldState: { error },
+              }) => (
+                <InputField
+                  placeholder={intl.formatMessage({
+                    id: 'account.registration.form.placeholder.last-name',
+                    defaultMessage: 'Last name',
+                  })}
+                  label={intl.formatMessage({
+                    id: 'account.registration.form.label.Last-name',
+                    defaultMessage: 'Last name',
+                  })}
+                  value={value ?? ''}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  error={error?.message}
+                />
+              )}
+            ></Controller>
+          </div>
+
           {/*<span className={styles.note}>*/}
           {/*  {intl.formatMessage({*/}
           {/*    id: 'account.login.note',*/}
@@ -135,26 +172,9 @@ const AccountLogin = observer(({ onSubmit }: Props) => {
             defaultMessage: 'Submit',
           })}
         </Button>
-        <div className={styles.link_section}>
-          <span>
-            {intl.formatMessage({
-              id: 'account.login.create_account_part1',
-              defaultMessage: 'First time here?',
-            })}
-          </span>
-          <Link
-            className={styles.link}
-            href={`/${ROUTES.account.path}/${ROUTES.account.registration.path}`}
-          >
-            {intl.formatMessage({
-              id: 'account.login.create_account_part2',
-              defaultMessage: 'Create an account',
-            })}
-          </Link>
-        </div>
       </div>
     </div>
   );
 });
 
-export default AccountLogin;
+export default AccountRegistration;

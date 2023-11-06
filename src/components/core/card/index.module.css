@@ -1,0 +1,4 @@
+.main {
+  @apply bg-white rounded-md;
+  @apply p-5;
+}

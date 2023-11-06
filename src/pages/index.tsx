@@ -1,5 +1,5 @@
-import MainPage from 'modules/main';
+import Main from 'modules/main';
 
 export default function Home() {
-  return <MainPage />;
+  return <Main />;
 }

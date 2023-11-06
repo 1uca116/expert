@@ -1,0 +1,27 @@
+.option {
+  @apply flex items-center space-x-2;
+  @apply mx-1 my-[2px] p-2;
+  @apply rounded-md;
+  @apply cursor-pointer;
+  @apply hover:bg-stone;
+}
+
+.option_selected {
+  @apply bg-stone;
+}
+
+.option_icon {
+  @apply w-6 h-6;
+}
+
+.value {
+  @apply flex items-center space-x-2;
+}
+
+.value_icon {
+  @apply w-6 h-6;
+}
+
+.value_label {
+  @apply text-neutral-400;
+}
