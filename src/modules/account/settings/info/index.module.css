@@ -20,7 +20,7 @@
   @apply relative;
 }
 .common_online_dot {
-  @apply absolute right-[12%] bottom-0;
+  @apply absolute right-[20%] bottom-[20%];
   @apply w-[10px] h-[10px];
   @apply rounded-full bg-green;
   @apply translate-x-[10px] translate-y-[10px];

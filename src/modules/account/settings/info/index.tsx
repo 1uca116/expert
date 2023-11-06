@@ -30,7 +30,7 @@ const UserInfoSection = () => {
       <Card className={styles.common} id={'1'}>
         <div className={styles.common_main}>
           <div className={styles.common_img}>
-            <img src={'/images/user-empty.png'} width={60} height={60} alt={''} />
+            <img src={'/images/user-no-img.svg'} className={'rounded-full'} width={60} height={60} alt={''} />
             <i className={classNames(styles.common_online_dot)}></i>
           </div>
           <div>

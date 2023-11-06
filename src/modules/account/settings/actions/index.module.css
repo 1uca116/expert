@@ -5,7 +5,8 @@
 }
 .action_item {
   @apply flex items-center gap-2;
-  @apply p-4;
+  @apply p-4 rounded-md;
+  @apply hover:bg-stone;
 }
 .action_item.active {
   @apply bg-stone;

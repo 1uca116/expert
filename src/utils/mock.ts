@@ -14,20 +14,20 @@ export const Test: SearchFieldValue[] = [
     name: 'Jovana Ivanchich',
     profession: 'Nanny',
     id: 1,
-    slug: 'test',
+    slug: 'nanny',
   },
   {
     objectType: 'profession',
     name: 'Milan Manchich',
     profession: 'Translator',
     id: 2,
-    slug: 'test',
+    slug: 'translator',
   },
   {
     objectType: 'task',
     task: 'Cleaning',
     id: 3,
-    slug: 'test',
+    slug: 'cleaning',
   },
 ];
 

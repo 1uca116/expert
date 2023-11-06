@@ -5,7 +5,6 @@ import UserInfoSection from './info';
 import UserActionsSection from './actions';
 
 const AccountSettings = () => {
-
   return (
     <Container className={classNames(styles.main)}>
       <div className={styles.settings}>

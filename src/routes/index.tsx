@@ -5,12 +5,12 @@ const ROUTES = {
     login: {path: 'login'},
     registration: {path: 'registration'},
     settings: { path: 'settings' },
-    orders: { path: 'orders' },
+    orders_history: { path: 'orders_history' },
   },
   expertAccount: {
-    path: 'expert-account',
+    path: 'expert_account',
     settings: { path: 'settings' },
-    orders: { path: 'orders' },
+    orders_history: { path: 'orders_history' },
   },
 };
 

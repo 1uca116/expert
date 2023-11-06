@@ -1,0 +1,74 @@
+.main {
+  @apply flex flex-col flex-1;
+}
+.title {
+  @apply text-2xl font-bold;
+  @apply mt-7;
+}
+.orders {
+  @apply grid grid-cols-3 gap-5;
+  @apply mt-5;
+}
+
+.order_item_add {
+  @apply flex flex-col justify-between;
+  @apply bg-orange rounded-md;
+  @apply p-5;
+  @apply bg-orange;
+  @apply cursor-pointer;
+}
+.order_item_add_title {
+  @apply text-3xl;
+  @apply flex gap-5 items-center;
+}
+.order_item_add:hover .plus{
+  @apply scale-110 transition-all duration-500;
+  @apply shadow-md;
+}
+.plus {
+  @apply rounded-full;
+  @apply text-5xl text-white;
+}
+.order_item {
+  @apply grid grid-cols-2 gap-3;
+  @apply items-center;
+  @apply bg-lavender rounded-md;
+  @apply p-5;
+}
+.order_item:nth-child(odd) {
+  @apply bg-pink;
+}
+
+.order_item_task {
+  @apply text-2xl font-bold;
+
+}
+.order_item_date {
+  @apply text-lg text-black/70;
+  @apply text-end;
+
+}
+.order_item_name {
+@apply flex items-center gap-2;
+}
+
+.search_section{
+  @apply grid grid-cols-9 gap-3;
+  @apply mt-4;
+}
+.search_field {
+  @apply col-span-7;
+}
+.search_btn {
+  @apply col-span-2;
+}
+.suggestion_section {
+  @apply flex gap-3;
+  @apply mt-3;
+}
+.suggestion {
+  @apply bg-stone text-black text-sm;
+  @apply px-3 py-1.5;
+  @apply rounded-md;
+}
+
