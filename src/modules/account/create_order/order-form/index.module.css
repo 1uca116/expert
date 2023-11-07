@@ -1,0 +1,13 @@
+.order_form {
+    @apply flex flex-col gap-5;
+}
+.header {
+    @apply text-xl;
+}
+.description {
+    @apply text-neutral-400;
+
+}
+.buttons {
+    @apply flex justify-between
+}

@@ -1,0 +1,19 @@
+.main {
+  @apply flex flex-col flex-1;
+}
+.title {
+  @apply text-2xl font-bold;
+  @apply mt-7;
+}
+
+.order {
+  @apply grid grid-cols-3 gap-5;
+  @apply pt-4;
+}
+.order_form {
+  @apply col-span-2;
+}
+.order_actions {
+  @apply relative;
+  @apply col-span-1;
+}

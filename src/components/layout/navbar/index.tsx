@@ -1,6 +1,6 @@
 import styles from './index.module.css';
 import classNames from 'classnames';
-import { observer } from 'mobx-react-lite';
+import { observer, useLocalObservable } from 'mobx-react-lite';
 import { useIntl } from 'react-intl';
 import Container from 'components/core/container';
 import Link from 'next/link';
@@ -10,11 +10,29 @@ import { FaChevronDown } from 'react-icons/fa';
 import Button from 'components/core/button';
 import { useMainMenu } from 'hooks/show-sidebar';
 import { MdOutlineMenu } from 'react-icons/md';
+import {
+  availableLanguages,
+  Language,
+  LanguageStore,
+} from '../../../stores/LanguageStore';
+import { useCallback } from 'react';
 
 const Navbar = observer(() => {
   const intl = useIntl();
-
   const { showMainMenu } = useMainMenu();
+  const langStore = useLocalObservable(() => new LanguageStore());
+
+  const getLanguages = useCallback(
+    (callback: (options: Language[]) => void) => {
+      if (callback) {
+        callback(availableLanguages);
+        return;
+      }
+
+      langStore.setLanguage(callback);
+    },
+    [langStore]
+  );
 
   return (
     <div className={classNames(styles.navbar)}>

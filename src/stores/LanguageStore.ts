@@ -1,18 +1,28 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 
 import messagesEnglish from '../assets/lang/en.json';
+import messagesRussian from '../assets/lang/ru.json';
+import messagesSerbian from '../assets/lang/srb.json';
 
 const storageKey = 'nft-marketplace.language';
 
-type Language = {
+export type Language = {
   id: string;
   text: string;
 };
 
-const availableLanguages: Language[] = [
+export const availableLanguages: Language[] = [
   {
     id: 'en',
     text: 'English',
+  },
+  {
+    id: 'ru',
+    text: 'Russian',
+  },
+  {
+    id: 'srb',
+    text: 'Serbian',
   },
 ];
 
@@ -53,6 +63,10 @@ export class LanguageStore {
     switch (this.language.id) {
       case 'en':
         return messagesEnglish;
+      case 'ru':
+        return messagesRussian;
+      case 'srb':
+        return messagesSerbian;
       default:
         return messagesEnglish;
     }

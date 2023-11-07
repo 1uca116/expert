@@ -6,7 +6,7 @@ import Button from 'components/core/button';
 import SearchField from 'components/common/search-field';
 import { useState } from 'react';
 import classNames from 'classnames';
-import {Test} from "../../../utils/mock";
+import { Test } from '../../../utils/mock';
 
 const AccountOrdersHistory = () => {
   const intl = useIntl();
@@ -44,10 +44,10 @@ const AccountOrdersHistory = () => {
             </div>
             <div className={styles.suggestion_section}>
               {Test?.map(
-                  (x) =>
-                      x.profession && (
-                          <div className={styles.suggestion}>{x.profession}</div>
-                      )
+                (x) =>
+                  x.profession && (
+                    <div className={styles.suggestion}>{x.profession}</div>
+                  )
               )}
             </div>
           </div>
