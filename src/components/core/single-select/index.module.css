@@ -21,7 +21,3 @@
 .value_icon {
   @apply w-6 h-6;
 }
-
-.value_label {
-  @apply text-neutral-400;
-}

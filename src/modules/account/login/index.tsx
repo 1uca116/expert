@@ -116,13 +116,6 @@ const AccountLogin = observer(({ onSubmit }: Props) => {
               )}
             ></Controller>
           </div>
-          {/*<span className={styles.note}>*/}
-          {/*  {intl.formatMessage({*/}
-          {/*    id: 'account.login.note',*/}
-          {/*    defaultMessage:*/}
-          {/*      'Don`t worry, your phone number is hidden. You decide who will have access to it',*/}
-          {/*  })}*/}
-          {/*</span>*/}
         </div>
         <Button
           variant={'primary'}

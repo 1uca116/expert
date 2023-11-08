@@ -3,15 +3,10 @@ import Container from 'components/core/container';
 import { useIntl } from 'react-intl';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
 import Button from 'components/core/button';
-import SearchField from 'components/common/search-field';
-import { useState } from 'react';
-import classNames from 'classnames';
-import { Test } from '../../../utils/mock';
+import ROUTES from 'routes';
 
 const AccountOrdersHistory = () => {
   const intl = useIntl();
-
-  const [searchField, showSearchField] = useState(false);
 
   return (
     <Container className={styles.main}>
@@ -22,9 +17,9 @@ const AccountOrdersHistory = () => {
         })}
       </div>
       <div className={styles.orders}>
-        <div
+        <a
           className={styles.order_item_add}
-          onClick={() => showSearchField(true)}
+          href={`/${ROUTES.account.path}/${ROUTES.account.create_order.path}`}
         >
           <div className={styles.order_item_add_title}>
             <BsFillPlusCircleFill className={styles.plus} />
@@ -33,25 +28,7 @@ const AccountOrdersHistory = () => {
               defaultMessage: 'Create new order',
             })}
           </div>
-          <div className={classNames({ ['hidden']: searchField === false })}>
-            <div className={classNames(styles.search_section)}>
-              <div className={styles.search_field}>
-                <SearchField />
-              </div>
-              <Button variant={'primary'} className={styles.search_btn}>
-                Search
-              </Button>
-            </div>
-            <div className={styles.suggestion_section}>
-              {Test?.map(
-                (x) =>
-                  x.profession && (
-                    <div className={styles.suggestion}>{x.profession}</div>
-                  )
-              )}
-            </div>
-          </div>
-        </div>
+        </a>
         <div className={styles.order_item}>
           <div className={styles.order_item_task}>Pet sitting</div>
           <div className={styles.order_item_date}>04 Jun 2023</div>

@@ -13,7 +13,7 @@
 .order_form {
   @apply col-span-2;
 }
-.order_actions {
+.order_state {
   @apply relative;
   @apply col-span-1;
 }

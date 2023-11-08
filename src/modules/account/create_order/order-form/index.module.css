@@ -1,13 +1,22 @@
 .order_form {
-    @apply flex flex-col gap-5;
+  @apply flex flex-col gap-5;
 }
 .header {
-    @apply text-xl;
+  @apply text-xl;
 }
 .description {
-    @apply text-neutral-400;
-
+  @apply text-neutral-400;
 }
 .buttons {
-    @apply flex justify-between
+  @apply flex justify-between;
+}
+.button {
+  @apply basis-28;
+}
+.form_field {
+  @apply flex flex-col gap-1;
+}
+.form_label {
+  @apply text-sm font-semibold text-neutral-400;
+  @apply ps-2;
 }

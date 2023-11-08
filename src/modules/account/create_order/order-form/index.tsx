@@ -1,32 +1,271 @@
 import styles from './index.module.css';
 import { useIntl } from 'react-intl';
-import Card from '../../../../components/core/card';
-import InputField from '../../../../components/core/input-field';
-import Button from "../../../../components/core/button";
+import Card from 'components/core/card';
+import InputField from 'components/core/input-field';
+import Button from 'components/core/button';
+import { Controller, useForm } from 'react-hook-form';
+import { observer } from 'mobx-react-lite';
+import { useCallback, useMemo } from 'react';
+import joi from 'joi';
+import { joiResolver } from '@hookform/resolvers/joi';
+import TextArea from 'components/core/text-area';
+import SingleSelect, { SingleSelectValue } from 'components/core/single-select';
+import { ServiceType } from 'utils/mock';
+import FileInput from 'components/common/file-input';
 
+export type OnCreateOrderSubmit = {
+  serviceType: SingleSelectValue;
+  title: string;
+  details: string;
+  deadline: number;
+  userPrice: number;
+  photo: string;
+};
+
+type CreateOrderForm = {
+  serviceType: SingleSelectValue;
+  title: string;
+  details: string;
+  deadline: Date;
+  userPrice: number;
+  photo: string;
+};
+
+type Props = {
+  order?: CreateOrderForm;
+  onSubmit?: (form: OnCreateOrderSubmit) => void;
+};
+
+const OrderTitle = observer(({ order, onSubmit }: Props) => {
+  const intl = useIntl();
+
+  const formScheme = useMemo(
+    () =>
+      joi.object({
+        serviceType: joi.object().required(),
+        title: joi.string().required(),
+        details: joi.string().required(),
+        deadline: joi.date(),
+        userPrice: joi.number(),
+        photo: joi.string(),
+      }),
+    []
+  );
+
+  const {
+    handleSubmit,
+    control,
+    formState,
+    watch,
+    resetField,
+    formState: { errors },
+  } = useForm<CreateOrderForm>({
+    resolver: joiResolver(formScheme),
+  });
+
+  const onSubmitForm = useCallback(
+    (form: CreateOrderForm) => {
+      onSubmit?.({
+        serviceType: form.serviceType,
+        title: form.title,
+        details: form.details,
+        deadline: Number(form.deadline),
+        userPrice: form.userPrice,
+        photo: form.photo,
+      });
+      console.log(JSON.stringify(form));
+    },
+    [onSubmit]
+  );
+
+  return (
+    <>
+      <div className={styles.header}>
+        {intl.formatMessage({
+          id: 'user.order-new.form.order-title',
+          defaultMessage: 'Describe your order',
+        })}
+      </div>
+      <div className={styles.description}>
+        {intl.formatMessage({
+          id: 'user.order-new.form.order-subtitle',
+          defaultMessage:
+            'Detailed information will help specialists to easier understand what needs to be done',
+        })}
+      </div>
+      <div className={styles.form_field}>
+        <label className={styles.form_label}>
+          {intl.formatMessage({
+            id: 'user.order-new.form.task-type',
+            defaultMessage: 'Expert',
+          })}
+        </label>
+        <Controller
+          control={control}
+          name={'serviceType'}
+          render={({
+            field: { onChange, onBlur, value },
+            fieldState: { error },
+          }) => (
+            <SingleSelect
+              placeholderText={intl.formatMessage({
+                id: 'user.order-new.form.task-type.placeholder',
+                defaultMessage: 'Who are you looking for?',
+              })}
+              options={ServiceType}
+              value={value ?? ''}
+              onChange={onChange}
+            />
+          )}
+        ></Controller>
+      </div>
+      <div className={styles.form_field}>
+        <label className={styles.form_label}>
+          {intl.formatMessage({
+            id: 'user.order-new.form.task-title',
+            defaultMessage: 'Task title',
+          })}
+        </label>
+        <Controller
+          control={control}
+          name='title'
+          render={({
+            field: { onChange, onBlur, value },
+            fieldState: { error },
+          }) => (
+            <InputField
+              placeholder={intl.formatMessage({
+                id: 'user.order-new.form.task-title.placeholder',
+                defaultMessage: 'Title',
+              })}
+              inputColor={'!bg-neutral-200'}
+              value={value ?? ''}
+              onChange={onChange}
+              onBlur={onBlur}
+              error={error?.message}
+            />
+          )}
+        ></Controller>
+      </div>
+      <div className={styles.form_field}>
+        <label className={styles.form_label}>
+          {intl.formatMessage({
+            id: 'user.order-new.form.task-details',
+            defaultMessage: 'Describe your task',
+          })}
+        </label>
+        <Controller
+          control={control}
+          name='details'
+          render={({
+            field: { onChange, onBlur, value },
+            fieldState: { error },
+          }) => (
+            <TextArea
+              placeholder={intl.formatMessage({
+                id: 'user.order-new.form.task-details.placeholder',
+                defaultMessage: 'Details',
+              })}
+              value={value ?? ''}
+              inputColor={'!bg-neutral-200'}
+              onChange={onChange}
+              onBlur={onBlur}
+              error={error?.message}
+            />
+          )}
+        ></Controller>
+      </div>
+      <div className={styles.form_field}>
+        <label className={styles.form_label}>
+          {intl.formatMessage({
+            id: 'user.order-new.form.task-price',
+            defaultMessage: 'Price (in Serbian dinars)',
+          })}
+        </label>
+        <Controller
+          control={control}
+          name='userPrice'
+          render={({
+            field: { onChange, onBlur, value },
+            fieldState: { error },
+          }) => (
+            <InputField
+              placeholder={intl.formatMessage({
+                id: 'user.order-new.form.task-price.placeholder',
+                defaultMessage: 'How much are you ready to pay for work?',
+              })}
+              value={value ?? ''}
+              inputColor={'!bg-neutral-200'}
+              onChange={onChange}
+              onBlur={onBlur}
+              error={error?.message}
+            />
+          )}
+        ></Controller>
+      </div>
+      <div className={styles.form_field}>
+        <label className={styles.form_label}>
+          {intl.formatMessage({
+            id: 'user.order-new.form.task-files',
+            defaultMessage: 'Upload files',
+          })}
+        </label>
+        <Controller
+          control={control}
+          name='photo'
+          render={({
+            field: { onChange, onBlur, value },
+            fieldState: { error },
+          }) => (
+            <InputField
+              placeholder={intl.formatMessage({
+                id: 'user.order-new.form.task-files.placeholder',
+                defaultMessage: 'Files',
+              })}
+              type={'text'}
+              value={value ?? ''}
+              inputColor={'!bg-neutral-200'}
+              onChange={onChange}
+              onBlur={onBlur}
+              error={error?.message}
+            />
+          )}
+        ></Controller>
+      </div>
+      <FileInput
+        accept='image/png, image/jpg, image/jpeg, image/pdf'
+        multiple
+        name='Upload files'
+        mode='append'
+      />
+      <div className={styles.buttons}>
+        <Button variant={'secondary'} className={styles.button}>
+          {intl.formatMessage({
+            id: 'user.order-new.form.btn_go-back',
+            defaultMessage: 'Go back',
+          })}
+        </Button>
+        <Button
+          variant={'primary'}
+          className={styles.button}
+          onClick={handleSubmit(onSubmitForm)}
+          disabled={!formState.isValid}
+        >
+          {intl.formatMessage({
+            id: 'user.order-new.form.btn_next',
+            defaultMessage: 'Next',
+          })}
+        </Button>
+      </div>
+    </>
+  );
+});
 const OrderForm = () => {
   const intl = useIntl();
 
   return (
     <Card className={styles.order_form}>
-      <div className={styles.header}>
-        {intl.formatMessage({
-          id: 'user.order-new.order-title',
-          defaultMessage: 'What is the title of the task?',
-        })}
-      </div>
-      <div className={styles.description}>
-        {intl.formatMessage({
-          id: 'user.order-new.order-subtitle',
-          defaultMessage:
-            'The title will help specialists to easier understand what needs to be done',
-        })}
-      </div>
-      <InputField inputColor={'!bg-neutral-200'} />
-        <div className={styles.buttons}>
-        <Button variant={"secondary"} className={'basis-28'}>Go back</Button>
-        <Button variant={"primary"} className={'basis-28'}>Next</Button>
-        </div>
+      <OrderTitle />
     </Card>
   );
 };
