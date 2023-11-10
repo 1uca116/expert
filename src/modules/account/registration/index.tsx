@@ -1,32 +1,30 @@
 import styles from './index.module.css';
 import { useIntl } from 'react-intl';
-import Button from '../../../components/core/button';
-import InputField from '../../../components/core/input-field';
+import Button from 'components/core/button';
+import InputField from 'components/core/input-field';
 import { Controller, useForm } from 'react-hook-form';
 import joi from 'joi';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { observer } from 'mobx-react-lite';
-import { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
+import { PWD_REGEX } from 'utils/regex';
 
 export type OnRegistrationSubmit = {
   email: string;
-  firstName: string;
-  lastName: string;
-  dateOfBirth: string;
-  phone: number;
+  password: string;
+  matchingPassword: string;
 };
 
 type RegistrationForm = {
   email: string;
-  firstName: string;
-  lastName: string;
-  dateOfBirth: string;
-  phone: number;
+  password: string;
+  matchingPassword: string;
 };
 
 type Props = {
   onSubmit?: (form: OnRegistrationSubmit) => void;
 };
+
 const AccountRegistration = observer(({ onSubmit }: Props) => {
   const intl = useIntl();
 
@@ -40,29 +38,30 @@ const AccountRegistration = observer(({ onSubmit }: Props) => {
             tlds: { allow: ['com', 'net', 'ru'] },
           })
           .required(),
-        firstName: joi.string().required(),
-        lastName: joi.string().required(),
-        phone: joi.number().required(),
+        password: joi
+          .string()
+          .regex(PWD_REGEX, 'password')
+          .min(8)
+          .max(24)
+          .required(),
+        matchingPassword: joi.string().required().valid(joi.ref('password')),
       }),
     []
   );
 
-  const { handleSubmit, control, formState, watch } = useForm<RegistrationForm>(
-    {
-      resolver: joiResolver(formScheme),
-      mode: 'onChange',
-      defaultValues: {},
-    }
-  );
+  const { handleSubmit, control, formState } = useForm<RegistrationForm>({
+    resolver: joiResolver(formScheme),
+    mode: 'onChange',
+    defaultValues: {},
+  });
   const onSubmitForm = useCallback(
     (form: RegistrationForm) => {
       onSubmit?.({
         email: form.email,
-        firstName: form.firstName,
-        lastName: form.lastName,
-        phone: form.phone,
-        dateOfBirth: form.dateOfBirth,
+        password: form.password,
+        matchingPassword: form.matchingPassword,
       });
+      console.log(form);
     },
     [onSubmit]
   );
@@ -76,7 +75,7 @@ const AccountRegistration = observer(({ onSubmit }: Props) => {
             defaultMessage: 'Create an account',
           })}
         </div>
-        <div className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit(onSubmitForm)}>
           <div className={styles.form_field}>
             <Controller
               control={control}
@@ -105,20 +104,21 @@ const AccountRegistration = observer(({ onSubmit }: Props) => {
           <div className={styles.form_field}>
             <Controller
               control={control}
-              name='firstName'
+              name='password'
               render={({
                 field: { onChange, onBlur, value },
                 fieldState: { error },
               }) => (
                 <InputField
                   placeholder={intl.formatMessage({
-                    id: 'account.registration.form.placeholder.first-name',
-                    defaultMessage: 'First name',
+                    id: 'account.registration.form.placeholder.password',
+                    defaultMessage: 'Password',
                   })}
                   label={intl.formatMessage({
-                    id: 'account.registration.form.label.first-name',
-                    defaultMessage: 'First name',
+                    id: 'account.registration.form.label.password',
+                    defaultMessage: 'Password',
                   })}
+                  type={'password'}
                   value={value ?? ''}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -130,20 +130,21 @@ const AccountRegistration = observer(({ onSubmit }: Props) => {
           <div className={styles.form_field}>
             <Controller
               control={control}
-              name='lastName'
+              name='matchingPassword'
               render={({
                 field: { onChange, onBlur, value },
                 fieldState: { error },
               }) => (
                 <InputField
                   placeholder={intl.formatMessage({
-                    id: 'account.registration.form.placeholder.last-name',
-                    defaultMessage: 'Last name',
+                    id: 'account.registration.form.placeholder.repeat-password',
+                    defaultMessage: 'Repeat password',
                   })}
                   label={intl.formatMessage({
-                    id: 'account.registration.form.label.Last-name',
-                    defaultMessage: 'Last name',
+                    id: 'account.registration.form.label.repeat-password',
+                    defaultMessage: 'Repeat password',
                   })}
+                  type={'password'}
                   value={value ?? ''}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -152,26 +153,18 @@ const AccountRegistration = observer(({ onSubmit }: Props) => {
               )}
             ></Controller>
           </div>
-
-          {/*<span className={styles.note}>*/}
-          {/*  {intl.formatMessage({*/}
-          {/*    id: 'account.login.note',*/}
-          {/*    defaultMessage:*/}
-          {/*      'Don`t worry, your phone number is hidden. You decide who will have access to it',*/}
-          {/*  })}*/}
-          {/*</span>*/}
-        </div>
-        <Button
-          variant={'primary'}
-          className={'w-full mt-5'}
-          onClick={handleSubmit(onSubmitForm)}
-          disabled={!formState.isValid}
-        >
-          {intl.formatMessage({
-            id: 'account.login.form.submit',
-            defaultMessage: 'Submit',
-          })}
-        </Button>
+          <Button
+            variant={'primary'}
+            className={'w-full mt-5'}
+            type={'submit'}
+            disabled={!formState.isValid}
+          >
+            {intl.formatMessage({
+              id: 'account.login.form.submit',
+              defaultMessage: 'Submit',
+            })}
+          </Button>
+        </form>
       </div>
     </div>
   );

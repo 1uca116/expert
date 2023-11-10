@@ -10,7 +10,7 @@ type Props = {
   onChange?: (value: string) => void;
   onFocus?: () => void;
   onBlur?: () => void;
-  type?: 'text';
+  type?: string;
   className?: string;
   error?: string;
   icon?: JSX.Element;
