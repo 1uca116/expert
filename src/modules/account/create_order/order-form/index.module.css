@@ -18,5 +18,5 @@
 }
 .form_label {
   @apply text-sm font-semibold text-neutral-400;
-  @apply ps-2;
+  @apply ps-2 pt-2.5;
 }

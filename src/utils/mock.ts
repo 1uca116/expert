@@ -1,6 +1,7 @@
 import { SearchFieldValue } from '../stores/SearchStore';
 import { UserProfileValue } from '../stores/user/UserProfileStore';
 import { SingleSelectValue } from '../components/core/single-select';
+import {OnCreateOrderSubmit} from "../modules/account/create_order/order-form";
 
 export const Test: SearchFieldValue[] = [
   {
@@ -97,5 +98,18 @@ export const ServiceType: SingleSelectValue[] = [
     label: 'Various specialists',
     value: 'various specialists',
   },
-
 ];
+
+export const Order : OnCreateOrderSubmit[] =[
+  {
+    serviceType: {
+      label: 'Various specialists',
+      value: 'various specialists',
+    },
+    title: 'string',
+    details: 'string',
+    deadline: 1345754,
+    userPrice: 400,
+    photo: 'string',
+  },
+]

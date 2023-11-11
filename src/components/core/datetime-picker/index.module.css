@@ -1,0 +1,12 @@
+.main {
+  @apply flex flex-col;
+}
+
+.picker_container {
+  @apply flex items-center w-full;
+}
+
+.error {
+  @apply px-1;
+  @apply text-red text-sm;
+}

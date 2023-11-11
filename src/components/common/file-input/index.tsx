@@ -43,7 +43,9 @@ const FileInput = (props: any) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: props.accept,
+    accept: {
+      'image/*': ['.jpeg', '.jpg', '.png'],
+    },
   });
 
   useEffect(() => {
