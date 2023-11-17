@@ -12,7 +12,7 @@ const SearchSection = () => {
         {intl.formatMessage({
           id: 'expert.main.search-section.title_part1',
           defaultMessage: 'Everything is easier with ',
-        })}
+        })} {''}
         <span className={styles.title_accent}>expert</span>
       </h1>
       <div className={styles.search_section}>
